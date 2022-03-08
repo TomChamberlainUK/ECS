@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ES5",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "outDir": "dist/dts",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@systems/*": ["src/systems/*"],
+    },
+    "strict": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "dts",
+    "esModuleInterop": true
+  },
+  "include": ["./src/**/*.ts"]
+}
