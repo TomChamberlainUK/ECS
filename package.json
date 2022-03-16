@@ -6,11 +6,11 @@
   "main": "dist/ecs.umd.js",
   "module": "dist/ecs.esm.js",
   "scripts": {
-    "build": "rollup --config && tsc-alias && typedoc",
-    "build:quick": "rollup --config && tsc-alias",
-    "build:docs": "typedoc",
-    "dev": "rollup --config --watch & tsc-alias -w",
-    "test": "npm run build && jest"
+    "build": "jest && rollup --config && tsc-alias && typedoc",
+    "watch": "jest --watch & rollup --config --watch & tsc-alias -w",
+    "dev": "npm run watch",
+    "docs": "typedoc",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Tom Chamberlain",
