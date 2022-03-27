@@ -7,10 +7,8 @@
   "module": "dist/ecs.esm.js",
   "scripts": {
     "build": "jest && rollup --config && tsc-alias && typedoc",
-    "watch": "jest --watch & rollup --config --watch & tsc-alias -w",
-    "dev": "npm run watch",
-    "docs": "typedoc",
-    "test": "jest"
+    "start": "rollup --config --watch & tsc-alias --watch",
+    "test": "jest --watch"
   },
   "keywords": [],
   "author": "Tom Chamberlain",
