@@ -24,11 +24,30 @@ describe('Game', () => {
   it('Should be able to start, run systems, and stop', () => {
     const game = new Game();
     const scene = new Scene();
-    function quitSystem() {
-      game.isRunning = false;
+
+    // Mock a system to later check if it gets called
+    const mockSystem = jest.fn();
+
+    // Check that the game is running during the loop
+    function testGameIsRunningSystem() {
+      expect(game.isRunning).toBe(true);
     }
-    scene.addSystem(quitSystem);
+
+    // Quit the game loop to prevent call stack errors
+    function quitGameSystem() {
+      game.stop();
+    }
+
+    // Add all systems to the scene
+    scene.addSystem(mockSystem);
+    scene.addSystem(testGameIsRunningSystem);
+    scene.addSystem(quitGameSystem);
+
+    // Set the current scene and start game
+    game.currentScene = scene;
     game.start();
+
+    expect(mockSystem).toHaveBeenCalled();
     expect(game.isRunning).toBe(false);
   });
 
