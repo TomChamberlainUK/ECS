@@ -8,7 +8,8 @@
   "scripts": {
     "build": "jest && rollup --config && tsc-alias && typedoc",
     "start": "rollup --config --watch & tsc-alias --watch",
-    "test": "jest --watch"
+    "test": "jest --watch --coverage",
+    "test:all": "jest --watchAll --coverage"
   },
   "keywords": [],
   "author": "Tom Chamberlain",
