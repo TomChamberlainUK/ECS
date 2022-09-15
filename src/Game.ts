@@ -24,6 +24,8 @@ export default class Game {
 
   private step() {
 
+    const deltaTime = 1 / 60;
+
     // Don't run if there's no scene available
     if (!this.currentScene) {
       this.stop();
@@ -35,7 +37,7 @@ export default class Game {
 
     // Run all systems
     for (const system of this.currentScene.systems) {
-      system();
+      system(this.currentScene.entities, deltaTime);
     }
 
     // Recursively call

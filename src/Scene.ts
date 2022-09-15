@@ -1,13 +1,15 @@
 import Entity from "@/Entity";
 
+type System = (entities: Entity[], deltaTime: number) => void;
+
 type ConstructorProps = {
   entities?: Entity[],
-  systems?: (() => void)[]
+  systems?: System[]
 }
 
 export default class Scene {
   public entities: Entity[];
-  public systems: (() => void)[];
+  public systems: System[];
 
   constructor({ entities, systems }: ConstructorProps = {}) {
     this.entities = entities ?? [];
@@ -18,7 +20,7 @@ export default class Scene {
     this.entities.push(entity);
   }
 
-  addSystem(system: () => void) {
+  addSystem(system: System) {
     this.systems.push(system);
   }
 }
