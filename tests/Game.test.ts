@@ -1,27 +1,54 @@
 import Game from '@/Game';
 import Scene from '@/Scene';
 
+// jest.mock('@/Scene');
+
 describe('Game', () => {
 
-  it('Should instanciate', () => {
+  it('Should instanciate correctly when passed no arguments', () => {
+
     const game = new Game();
-    expect(game.isRunning).toBe(false);
+
+    expect(game).toEqual({
+      isRunning: false,
+      currentScene: null
+    });
+
+  });
+
+  it('Should instanciate correctly when passed a currentScene argument', () => {
+
+    const game = new Game({
+      currentScene: new Scene
+    });
+
+    expect(game).toEqual({
+      isRunning: false,
+      currentScene: new Scene()
+    });
+
   });
 
   it('Can be allocated a scene', () => {
+
     const game = new Game();
-    const scene = new Scene();
-    game.currentScene = scene;
+    game.currentScene = new Scene();
+
     expect(game.currentScene).toBeInstanceOf(Scene);
+
   });
 
   it('Should not start if current scene is not set', () => {
+
     const game = new Game();
     game.start();
+
     expect(game.isRunning).toBe(false);
+
   });
 
   it('Should be able to start, run systems, and stop', () => {
+
     const game = new Game();
     const scene = new Scene();
 
@@ -49,6 +76,7 @@ describe('Game', () => {
 
     expect(mockSystem).toHaveBeenCalled();
     expect(game.isRunning).toBe(false);
+    
   });
 
 });
