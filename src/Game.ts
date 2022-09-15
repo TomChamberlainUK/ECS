@@ -6,7 +6,7 @@ type ConstructorProps = {
 
 export default class Game {
   public isRunning: boolean;
-  public currentScene: Scene | null;
+  private currentScene: Scene | null;
 
   constructor({ currentScene }: ConstructorProps = {}) {
     this.isRunning = false;
@@ -20,6 +20,14 @@ export default class Game {
 
   stop() {
     this.isRunning = false;
+  }
+
+  setCurrentScene(scene: Scene) {
+    this.currentScene = scene;
+  }
+
+  getCurrentScene() {
+    return this.currentScene;
   }
 
   private step() {

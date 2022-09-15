@@ -1,8 +1,6 @@
 import Game from '@/Game';
 import Scene from '@/Scene';
 
-// jest.mock('@/Scene');
-
 describe('Game', () => {
 
   it('Should instanciate correctly when passed no arguments', () => {
@@ -29,12 +27,14 @@ describe('Game', () => {
 
   });
 
-  it('Can be allocated a scene', () => {
+  it('Can set and get current scene', () => {
 
     const game = new Game();
-    game.currentScene = new Scene();
+    const scene = new Scene();
 
-    expect(game.currentScene).toBeInstanceOf(Scene);
+    game.setCurrentScene(new Scene());
+
+    expect(game.getCurrentScene()).toEqual(scene);
 
   });
 
@@ -71,7 +71,7 @@ describe('Game', () => {
     scene.addSystem(quitGameSystem);
 
     // Set the current scene and start game
-    game.currentScene = scene;
+    game.setCurrentScene(scene);
     game.start();
 
     expect(mockSystem).toHaveBeenCalled();
