@@ -14,7 +14,7 @@ describe('Renderer', () => {
       expect(renderer.getCanvas()).toEqual(canvas);
     });
 
-    it('Should set the width and height of the canvas equal to DOM element', () => {
+    it('Should set the width and height attributes to equal width and height', () => {
       const renderer = new Renderer();
       const canvas = document.createElement('canvas');
       jest.spyOn(canvas, 'scrollWidth', 'get').mockReturnValueOnce(100);
@@ -22,6 +22,21 @@ describe('Renderer', () => {
       renderer.setCanvas(canvas);
       expect(renderer.getCanvas()?.width).toBe(100);
       expect(renderer.getCanvas()?.height).toBe(100);
+    });
+
+    it('Should set the width and height attributes to equal width and height when the browser is resized', () => {
+      const renderer = new Renderer();
+      const canvas = document.createElement('canvas');
+      jest.spyOn(canvas, 'scrollWidth', 'get').mockReturnValueOnce(100);
+      jest.spyOn(canvas, 'scrollHeight', 'get').mockReturnValueOnce(100);
+      renderer.setCanvas(canvas);
+      expect(renderer.getCanvas()?.width).toBe(100);
+      expect(renderer.getCanvas()?.height).toBe(100);
+      jest.spyOn(canvas, 'scrollWidth', 'get').mockReturnValueOnce(300);
+      jest.spyOn(canvas, 'scrollHeight', 'get').mockReturnValueOnce(300);
+      window.dispatchEvent(new Event('resize'));
+      expect(renderer.getCanvas()?.width).toBe(300);
+      expect(renderer.getCanvas()?.height).toBe(300);
     });
 
     it('Should set (when setting canvas) and get a 2d rendering context', () => {

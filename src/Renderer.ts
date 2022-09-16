@@ -9,8 +9,8 @@ export default class Renderer {
 
   setCanvas(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
-    this.canvas.width = canvas.scrollWidth;
-    this.canvas.height = canvas.scrollHeight;
+    this.resizeCanvas();
+    window.addEventListener('resize', this.resizeCanvas.bind(this));
     this.ctx = this.canvas.getContext('2d');
   }
 
@@ -20,5 +20,11 @@ export default class Renderer {
 
   getContext() {
     return this.ctx;
+  }
+
+  private resizeCanvas() {
+    if (!this.canvas) return;
+    this.canvas.width = this.canvas.scrollWidth;
+    this.canvas.height = this.canvas.scrollHeight;
   }
 }
