@@ -1,5 +1,5 @@
-import Scene from '@/Scene';
-import Entity from '@/Entity';
+import Scene from '~/Scene';
+import Entity from '~/Entity';
 
 describe('Scene', () => {
 

@@ -6,7 +6,6 @@ import alias from '@rollup/plugin-alias';
 import cleaner from 'rollup-plugin-cleaner';
 import eslint from '@rollup/plugin-eslint';
 import { terser } from 'rollup-plugin-terser';
-import aliasHq from 'alias-hq';
 import pkg from "./package.json";
 
 const input = './src/index.ts';
@@ -30,7 +29,7 @@ export default [
         babelHelpers: 'bundled',
       }),
       alias({
-        entries: aliasHq.get('rollup')
+        entries: { find: '~', replacement: './src' }
       }),
       terser()
     ],
@@ -51,7 +50,7 @@ export default [
         babelHelpers: 'bundled',
       }),
       alias({
-        entries: aliasHq.get('rollup')
+        entries: { find: '~', replacement: './src' }
       }),
     ],
     output: {

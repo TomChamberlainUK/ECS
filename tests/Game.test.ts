@@ -1,5 +1,5 @@
-import Game from '@/Game';
-import Scene from '@/Scene';
+import Game from '~/Game';
+import Scene from '~/Scene';
 
 describe('Game', () => {
 

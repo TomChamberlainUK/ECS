@@ -1,1 +1,1 @@
-export { Component } from '@components/Component';
+export { Component } from '~/components/Component';

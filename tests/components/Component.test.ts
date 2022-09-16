@@ -1,4 +1,4 @@
-import { Component } from '@components/index';
+import { Component } from '~/components/index';
 
 describe('Component', () => {
 
