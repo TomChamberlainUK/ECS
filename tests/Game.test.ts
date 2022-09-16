@@ -1,4 +1,5 @@
 import Game from '~/Game';
+import Renderer from '~/Renderer';
 import Scene from '~/Scene';
 
 describe('Game', () => {
@@ -9,7 +10,8 @@ describe('Game', () => {
 
     expect(game).toEqual({
       isRunning: false,
-      currentScene: null
+      currentScene: null,
+      renderer: null
     });
 
   });
@@ -22,7 +24,8 @@ describe('Game', () => {
 
     expect(game).toEqual({
       isRunning: false,
-      currentScene: new Scene()
+      currentScene: new Scene(),
+      renderer: null
     });
 
   });
@@ -78,5 +81,14 @@ describe('Game', () => {
     expect(game.isRunning).toBe(false);
     
   });
+
+  it('Should allow setting and getting of a renderer', () => {
+    const game = new Game();
+    const renderer = new Renderer();
+    game.setRenderer(renderer);
+
+    expect(game.getRenderer()).toBeInstanceOf(Renderer);
+    expect(game.getRenderer()).toEqual(renderer);
+  })
 
 });

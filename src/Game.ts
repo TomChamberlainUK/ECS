@@ -1,4 +1,5 @@
 import type Scene from '~/Scene';
+import type Renderer from '~/Renderer';
 
 type ConstructorProps = {
   currentScene?: Scene;
@@ -7,10 +8,12 @@ type ConstructorProps = {
 export default class Game {
   public isRunning: boolean;
   private currentScene: Scene | null;
+  private renderer: Renderer | null;
 
   constructor({ currentScene }: ConstructorProps = {}) {
     this.isRunning = false;
     this.currentScene = currentScene ?? null;
+    this.renderer = null;
   }
 
   start() {
@@ -28,6 +31,14 @@ export default class Game {
 
   getCurrentScene() {
     return this.currentScene;
+  }
+
+  setRenderer(renderer: Renderer) {
+    this.renderer = renderer;
+  }
+
+  getRenderer() {
+    return this.renderer;
   }
 
   private step() {
