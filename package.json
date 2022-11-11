@@ -9,7 +9,8 @@
     "build": "jest && rollup --config && tsc-alias && typedoc",
     "start": "rollup --config --watch & tsc-alias --watch",
     "test": "jest --watch --coverage",
-    "test:all": "jest --watchAll --coverage"
+    "test:all": "jest --watchAll --coverage",
+    "postinstall": "git config core.hooksPath ./git-hooks"
   },
   "keywords": [],
   "author": "Tom Chamberlain",
