@@ -1,9 +1,37 @@
+#!/bin/sh
+
+# Colour formatting
+RED="\033[1;31m"
+GREEN="\033[1;32m"
+RESET_COLOR="\033[0m"
+
 exit_code=1
 
-echo "Running unit tests..."
-npx jest
+all_ts_files=$(git diff --cached --diff-filter=d --name-only | grep .ts$)
+
+# Intro
+echo "Attempting commit..."
+
+# Linting
+echo "Running linter..."
+npx eslint $all_ts_files
 exit_code=$?
 if [ $exit_code -ne 0 ]; then
-  echo "Unit tests failed, please fix and reattempt committing changes."
+  echo "${RED}Failed!${RESET_COLOR} — Linting errors detected. Please fix before reattempting to commit changes."
   exit 1
 fi
+echo "${GREEN}Passed!${RESET_COLOR} — No linting errors detected."
+
+# Unit tests
+echo "Running unit tests..."
+npx jest --silent
+exit_code=$?
+if [ $exit_code -ne 0 ]; then
+  echo "${RED}Failed!${RESET_COLOR} — Unit test errors detected. Please fix before reattempting to commit changes."
+  exit 1
+fi
+echo "${GREEN}Passed!${RESET_COLOR} — No unit test errors detected."
+
+# Success message — set to exit 0 to allow commit
+echo "${GREEN}All Tests Passed!${RESET_COLOR} — Proceeding with commit"
+exit 0
