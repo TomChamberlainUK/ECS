@@ -4,6 +4,9 @@
   "description": "",
   "types": "dist/dts/index.d.ts",
   "main": "dist/ecs.umd.js",
+  "files": [
+    "/dist"
+  ],
   "module": "dist/ecs.esm.js",
   "scripts": {
     "build": "npm run lint && npm run test && rollup --config && tsc-alias && typedoc",
