@@ -6,10 +6,11 @@
   "main": "dist/ecs.umd.js",
   "module": "dist/ecs.esm.js",
   "scripts": {
-    "build": "jest && rollup --config && tsc-alias && typedoc",
+    "build": "npm run lint && npm run test && rollup --config && tsc-alias && typedoc",
     "start": "rollup --config --watch & tsc-alias --watch",
-    "test": "jest --watch --coverage",
-    "test:all": "jest --watchAll --coverage",
+    "test": "jest",
+    "test:watch": "jest --watch --coverage",
+    "test:watch-all": "jest --watchAll --coverage",
     "lint": "eslint . --fix",
     "postinstall": "git config core.hooksPath ./git-hooks"
   },
