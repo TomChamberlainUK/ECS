@@ -6,7 +6,7 @@ import alias from '@rollup/plugin-alias';
 import cleaner from 'rollup-plugin-cleaner';
 import eslint from '@rollup/plugin-eslint';
 import { terser } from 'rollup-plugin-terser';
-import pkg from "./package.json";
+import pkg from './package.json';
 
 const input = './src/index.ts';
 

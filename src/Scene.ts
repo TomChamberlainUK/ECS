@@ -1,4 +1,4 @@
-import Entity from "~/Entity";
+import Entity from '~/Entity';
 
 type System = (entities: Entity[], deltaTime: number) => void;
 
