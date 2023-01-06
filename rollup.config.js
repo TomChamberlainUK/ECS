@@ -4,7 +4,6 @@ import typescript from '@rollup/plugin-typescript';
 import { babel } from '@rollup/plugin-babel';
 import alias from '@rollup/plugin-alias';
 import cleaner from 'rollup-plugin-cleaner';
-import eslint from '@rollup/plugin-eslint';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
@@ -18,9 +17,6 @@ export default [
   {
     input,
     plugins: [
-      eslint({
-        throwOnError: true
-      }),
       cleaner({ targets: ['./dist', './docs'] }),
       resolve(),
       commonjs(),
