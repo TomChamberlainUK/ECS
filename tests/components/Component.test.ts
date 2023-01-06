@@ -1,11 +1,10 @@
-import { Component } from '~/components/index';
+import { Component } from '~/components';
 
 describe('Component', () => {
 
-  const component = new Component();
-
-  it('When instanciating a root component it should have a blank name', () => {
-    expect(component.name).toBe('');
+  it('Should allow a name to be assigned when instanciating', () => {
+    const component = new Component({ name: 'test' });
+    expect(component.name).toBe('test');
   });
 
 });
