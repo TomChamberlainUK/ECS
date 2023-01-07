@@ -1,17 +1,17 @@
 import type { Component } from './components';
 
 /**
- * A representation of _something_ in the game engine.
- * This could be a rock, an enemy spaceship, a player controller etc.
+ * A class representing _something_ in the game engine.
+ * This could be anything — a rock, an enemy spaceship, a player controller etc.
  * What an entity represents is built through its components. How it behaves is dictated by systems.
- * 
- * @see {@link components}
- * @see {@link systems}
  */
 export default class Entity {
   public id: number;
   private components: Record<string, Component>;
 
+  /**
+   * Create an Entity.
+   */
   constructor() {
     this.id = generateUniqueId();
     this.components = {};
