@@ -1,5 +1,5 @@
-import * as components from '~/components/index';
-import * as systems from '~/systems/index';
+import * as components from '~/components';
+import * as systems from '~/systems';
 export { default as Game } from '~/Game';
 export { default as Scene } from '~/Scene';
 export { default as Renderer } from '~/Renderer';
