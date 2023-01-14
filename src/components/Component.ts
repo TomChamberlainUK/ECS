@@ -1,4 +1,10 @@
-type Props = {
+/**
+ * Interface for Component props.
+ */
+export interface IComponentConstructorProps {
+  /**
+   * The identifying name for the component.
+   */
   name: string;
 }
 
@@ -10,7 +16,11 @@ type Props = {
 export class Component {
   public name: string;
 
-  constructor({ name }: Props) {
+  /**
+   * Create a Component.
+   * @param props - Properties passed to the component.
+   */
+  constructor({ name }: IComponentConstructorProps) {
     this.name = name;
-  }
+  } 
 }
