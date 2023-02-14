@@ -1,4 +1,4 @@
-import { Component } from '~/components';
+import { CBaseComponent } from '~/components';
 import { Vector2D } from '~/maths';
 
 /**
@@ -23,7 +23,7 @@ export interface ITransform2D {
  * Transform2D Component class.
  * Determines an entities position, rotation, and scale.
  */
-export class CTransform2D extends Component {
+export class CTransform2D extends CBaseComponent {
   position: Vector2D;
   rotation: number;
   scale: Vector2D;

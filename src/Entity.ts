@@ -1,4 +1,4 @@
-import type { Component } from './components';
+import type { CBaseComponent } from './components';
 
 /**
  * A class representing _something_ in the game engine.
@@ -7,7 +7,7 @@ import type { Component } from './components';
  */
 export default class Entity {
   public id: number;
-  private components: Record<string, Component>;
+  private components: Record<string, CBaseComponent>;
 
   /**
    * Create an Entity.
@@ -19,15 +19,15 @@ export default class Entity {
 
   /**
    * Assigns a specific component and its relevant data to the entity.
-   * @param component The component to be added.
+   * @param component - The component to be added.
    */
-  addComponent(component: Component) {
+  addComponent(component: CBaseComponent) {
     this.components[component.name] = component;
   }
 
   /**
    * Unassigns a specific component and its relevant data from the entity.
-   * @param name The indentifying name of the component.
+   * @param name - The indentifying name of the component.
    */
   removeComponent(name: string) {
     delete this.components[name];
@@ -35,8 +35,7 @@ export default class Entity {
 
   /**
    * Checks if a specific component has been assigned to the entity.
-   * @param name The indentifying name of the component.
-   * @returns {boolean}
+   * @param name - The indentifying name of the component.
    */
   hasComponent(name: string) {
     return Boolean(this.components[name]);
@@ -44,8 +43,7 @@ export default class Entity {
   
   /**
    * Checks if multiple specific components have been assigned to the entity.
-   * @param names The indentifying names of the components.
-   * @returns {boolean}
+   * @param names - The indentifying names of the components.
    */
   hasComponents(...names: string[]) {
     return names.every(name => Boolean(this.components[name]));
@@ -53,8 +51,7 @@ export default class Entity {
 
   /**
    * Gets a specific component that has been assigned to the entity.
-   * @param name The indentifying name of the component.
-   * @returns {Component|undefined} The component if found, or undefined or not.
+   * @param name - The indentifying name of the component.
    */
   getComponent(name: string) {
     return this.components[name];

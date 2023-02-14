@@ -1,5 +1,5 @@
 import Entity from '~/Entity';
-import { Component } from '~/components';
+import { CBaseComponent } from '~/components';
 
 describe('Entity', () => {
 
@@ -28,21 +28,21 @@ describe('Entity', () => {
 
   it('Should be able to be assigned components', () => {
     const entity = new Entity();
-    entity.addComponent(new Component({ name: 'test' }));
+    entity.addComponent(new CBaseComponent({ name: 'test' }));
     expect(entity.hasComponent('test')).toBe(true);
   });
 
   it('Should allow users to check if the entity has multiple components', () => {
     const entity = new Entity();
-    entity.addComponent(new Component({ name: 'testA' }));
-    entity.addComponent(new Component({ name: 'testB' }));
-    entity.addComponent(new Component({ name: 'testC' }));
+    entity.addComponent(new CBaseComponent({ name: 'testA' }));
+    entity.addComponent(new CBaseComponent({ name: 'testB' }));
+    entity.addComponent(new CBaseComponent({ name: 'testC' }));
     expect(entity.hasComponents('testA', 'testB', 'testC')).toBe(true);
   });
 
   it('Should allow assigned components to be retrieved', () => {
     const entity = new Entity();
-    const testComponent = new Component({ name: 'test' });
+    const testComponent = new CBaseComponent({ name: 'test' });
     entity.addComponent(testComponent);
     const entityComponent = entity.getComponent('test');
     expect(entityComponent).toBe(testComponent);
@@ -50,7 +50,7 @@ describe('Entity', () => {
 
   it('Should be able to have components unassigned', () => {
     const entity = new Entity();
-    entity.addComponent(new Component({ name: 'test' }));
+    entity.addComponent(new CBaseComponent({ name: 'test' }));
     entity.removeComponent('test');
     expect(entity.hasComponent('test')).toBe(false);
   });

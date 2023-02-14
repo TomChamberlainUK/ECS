@@ -1,10 +1,11 @@
-import { Component } from '~/components';
+import { CBaseComponent } from '~/components';
 
 describe('Component', () => {
-
-  it('Should allow a name to be assigned when instanciating', () => {
-    const component = new Component({ name: 'test' });
-    expect(component.name).toBe('test');
+  describe('When instanciating with a name', () => {
+    const component = new CBaseComponent({ name: 'test' });
+    
+    it('Should assign that name', () => {
+      expect(component.name).toBe('test');
+    });
   });
-
 });
