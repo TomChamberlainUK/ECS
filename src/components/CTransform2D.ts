@@ -23,7 +23,7 @@ export interface ITransform2D {
  * Transform2D Component class.
  * Determines an entities position, rotation, and scale.
  */
-export class CTransform2D extends CBaseComponent {
+export class CTransform2D extends CBaseComponent implements ITransform2D {
   position: Vector2D;
   rotation: number;
   scale: Vector2D;

@@ -13,7 +13,7 @@ export interface IBaseComponent {
  * Components are the building blocks of an entity.
  * They hold the necessary data for representing certain aspects of an entity, such as a sprite or the color of a particle.
  */
-export class CBaseComponent {
+export class CBaseComponent implements IBaseComponent {
   public name: string;
 
   /**
