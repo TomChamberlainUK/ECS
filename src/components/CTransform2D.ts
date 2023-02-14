@@ -32,14 +32,14 @@ export class CTransform2D extends CBaseComponent implements ITransform2D {
    * Constructs a Transform2D component.
    * @param props - Properties passed to the component.
    */
-  constructor({ position, rotation, scale }: ITransform2D = {
-    position: { x: 0, y: 0 },
-    rotation: 0,
-    scale: { x: 0, y: 0 }
-  }) {
+  constructor({
+    position = { x: 0, y: 0 },
+    rotation = 0,
+    scale = { x: 0, y: 0 }
+  }: ITransform2D = {}) {
     super({ name: 'transform2d' });
-    this.position = new Vector2D(position ?? { x: 0, y: 0 });
-    this.rotation = rotation ?? 0;
-    this.scale = new Vector2D(scale ?? { x: 0, y: 0 });
+    this.position = new Vector2D(position);
+    this.rotation = rotation;
+    this.scale = new Vector2D(scale);
   }
 }
