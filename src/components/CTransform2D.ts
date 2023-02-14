@@ -1,4 +1,4 @@
-import { CBaseComponent } from '~/components';
+import { CBaseComponent } from './CBaseComponent';
 import { Vector2D } from '~/maths';
 
 /**
