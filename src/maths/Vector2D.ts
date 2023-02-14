@@ -16,7 +16,7 @@ export interface IVector2D {
  * A class representing a 2D vector.
  * A vector provides direction and magnitude for determining the position of one point in space relative to another.
  */
-export class Vector2D {
+export class Vector2D implements IVector2D {
   public x: number;
   public y: number;
 
