@@ -26,8 +26,8 @@ describe('CTransform', () => {
 
     it('Should have a 2D vector scale', () => {
       expect(transformComponent.scale).toBeInstanceOf(Vector2D);
-      expect(transformComponent.scale.x).toEqual(0);
-      expect(transformComponent.scale.y).toEqual(0);
+      expect(transformComponent.scale.x).toEqual(1);
+      expect(transformComponent.scale.y).toEqual(1);
     });
   });
 

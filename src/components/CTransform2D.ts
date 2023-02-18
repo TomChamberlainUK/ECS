@@ -35,7 +35,7 @@ export class CTransform2D extends CBaseComponent implements ITransform2D {
   constructor({
     position = { x: 0, y: 0 },
     rotation = 0,
-    scale = { x: 0, y: 0 }
+    scale = { x: 1, y: 1 }
   }: ITransform2D = {}) {
     super({ name: 'transform2d' });
     this.position = new Vector2D(position);
