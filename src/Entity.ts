@@ -21,7 +21,7 @@ export default class Entity {
    * Assigns a specific component and its relevant data to the entity.
    * @param component - The component to be added.
    */
-  addComponent(component: CBaseComponent) {
+  addComponent<T extends CBaseComponent>(component: T) {
     this.components[component.name] = component;
   }
 
