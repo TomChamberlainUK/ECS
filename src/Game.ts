@@ -1,19 +1,20 @@
 import type Scene from '~/Scene';
 import type Renderer from '~/Renderer';
 
-type ConstructorProps = {
-  currentScene?: Scene;
+export type IGame = {
+  currentScene?: Scene,
+  renderer?: Renderer
 }
 
 export default class Game {
-  private isRunning: boolean;
-  private currentScene: Scene | null;
-  private renderer: Renderer | null;
+  currentScene: Scene | undefined;
+  renderer: Renderer | undefined;
+  isRunning: boolean;
 
-  constructor({ currentScene }: ConstructorProps = {}) {
+  constructor({ currentScene, renderer }: IGame = {}) {
+    this.currentScene = currentScene;
+    this.renderer = renderer;
     this.isRunning = false;
-    this.currentScene = currentScene ?? null;
-    this.renderer = null;
   }
 
   start() {
@@ -25,24 +26,15 @@ export default class Game {
     this.isRunning = false;
   }
 
-  setCurrentScene(scene: Scene) {
-    this.currentScene = scene;
-  }
-
-  getCurrentScene() {
-    return this.currentScene;
-  }
-
-  setRenderer(renderer: Renderer) {
-    this.renderer = renderer;
-  }
-
-  getRenderer() {
-    return this.renderer;
-  }
-
   private loopStep() {
-    if (!this.isRunning) return;
+    if (!this.isRunning || !this.currentScene || !this.renderer) return;
+
+    const { currentScene: { entities, systems }, renderer } = this;
+
+    systems.forEach(system => {
+      system(entities, renderer);
+    });
+
     requestAnimationFrame(() => this.loopStep());
   }
 }

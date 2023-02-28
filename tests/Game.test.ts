@@ -3,43 +3,44 @@ import Renderer from '~/Renderer';
 import Scene from '~/Scene';
 
 describe('Game', () => {
-
-  describe('Scene', () => {
-    it('Should allow setting and getting of current scene', () => {
-
+  describe('When instanciated', () => {
+    it('Should instanciate', () => {
       const game = new Game();
-      const scene = new Scene();
-  
-      game.setCurrentScene(new Scene());
-  
-      expect(game.getCurrentScene()).toBeInstanceOf(Scene);
-      expect(game.getCurrentScene()).toEqual(scene);
-  
+      expect(game).toBeInstanceOf(Game);
     });
   });
 
-  describe('Renderer', () => {
-    it('Should allow setting and getting of a renderer', () => {
-
-      const game = new Game();
+  describe('When instanciated with a renderer', () => {
+    it('Should set the renderer', () => {
       const renderer = new Renderer();
-
-      game.setRenderer(renderer);
-  
-      expect(game.getRenderer()).toBeInstanceOf(Renderer);
-      expect(game.getRenderer()).toEqual(renderer);
+      const game = new Game({ renderer });
+      expect(game.renderer).toBeInstanceOf(Renderer);
     });
   });
 
-  describe('The game loop', () => {
-    it('Should start', () => {
-      const spyRequestAnimationFrame = jest.spyOn(window, 'requestAnimationFrame');
+  describe('When instanciated with a scene', () => {
+    it('Should set the currentScene', () => {
+      const currentScene = new Scene();
+      const game = new Game({ currentScene });
+      expect(game.currentScene).toBeInstanceOf(Scene);
+    });
+  });
 
+  describe('start()', () => {
+    it('Should start running the game', () => {
       const game = new Game();
       game.start();
-      expect(spyRequestAnimationFrame).toHaveBeenCalled();
+      expect(game.isRunning).toBe(true);
     });
+  });
 
-    it.todo('Should stop');
+  describe('stop()', () => {
+    it('Should stop a running game', () => {
+      const game = new Game();
+      game.start();
+      expect(game.isRunning).toBe(true);
+      game.stop();
+      expect(game.isRunning).toBe(false);
+    });
   });
 });
