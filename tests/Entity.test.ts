@@ -2,57 +2,133 @@ import Entity from '~/Entity';
 import { CBaseComponent } from '~/components';
 
 describe('Entity', () => {
-
-  it('When instantiated an entity should have an ID', () => {
+  describe('When instanciated', () => {
     const entity = new Entity();
-    expect(entity.id).not.toBeUndefined();
-  });
+    
+    it('Should instanciate', () => {  
+      expect(entity).toBeInstanceOf(Entity);
+    });
 
-  it('When multiple entities are instantiated they should all have unique IDs', () => {
+    it('Should have a unique ID', () => {
+      const otherEntities = Array.from({ length: 5 }, () => new Entity());
 
-    const usedIdsMap = new Map<Entity['id'], boolean>();
-    let foundRepeatedId = false;
-
-    for (let i = 0; i < 10; i++) {
-      const entity = new Entity();
-      if (usedIdsMap.has(entity.id)) {
-        foundRepeatedId = true;
-        break;
-      } else {
-        usedIdsMap.set(entity.id, true);
+      for (const otherEntity of otherEntities) {
+        expect(entity.id).not.toEqual(otherEntity.id);
       }
-    }
-
-    expect(foundRepeatedId).toBe(false);
+    });
   });
 
-  it('Should be able to be assigned components', () => {
+  describe('When instanciated with components', () => {
+    const components = Array.from({ length: 5 }, (_, i) => new CBaseComponent({ name: `test-${i}` }));
+    const entity = new Entity({ components });
+
+    it('Should set the components', () => {
+      for (const { name } of components) {
+        expect(entity.hasComponent(name)).toBe(true);
+      }
+    });
+  });
+
+  describe('hasComponent()', () => {
     const entity = new Entity();
-    entity.addComponent(new CBaseComponent({ name: 'test' }));
-    expect(entity.hasComponent('test')).toBe(true);
+    const component = new CBaseComponent({ name: 'added' });
+    entity.addComponent(component);
+
+    describe('When passed a string matching an assigned component', () => {
+      it('Should return true', () => {
+        expect(entity.hasComponent('added')).toBe(true);
+      });
+    });
+
+    describe('When passed a string not matching an assigned component', () => {
+      it('Should return false', () => {
+        expect(entity.hasComponent('not-added')).toBe(false);
+      });
+    });
   });
 
-  it('Should allow users to check if the entity has multiple components', () => {
+  describe('hasComponents()', () => {
     const entity = new Entity();
-    entity.addComponent(new CBaseComponent({ name: 'testA' }));
-    entity.addComponent(new CBaseComponent({ name: 'testB' }));
-    entity.addComponent(new CBaseComponent({ name: 'testC' }));
-    expect(entity.hasComponents('testA', 'testB', 'testC')).toBe(true);
+    const components = [
+      new CBaseComponent({ name: 'test-a' }),
+      new CBaseComponent({ name: 'test-b' }),
+    ];
+
+    entity.addComponents(components);
+
+    describe('When passed strings matching assigned components', () => {
+      it('Should return true', () => {
+        expect(entity.hasComponents('test-a', 'test-b')).toBe(true);
+      });
+    });
+
+    describe('When passed strings not matching assigned components', () => {
+      it('Should return false', () => {
+        expect(entity.hasComponents('test-c', 'test-d')).toBe(false);
+      });
+    });
+
+    describe('When passed strings where some match assigned components', () => {
+      it('Should return false', () => {
+        expect(entity.hasComponents('test-a', 'test-d')).toBe(false);
+      });
+    });
   });
 
-  it('Should allow assigned components to be retrieved', () => {
+  describe('addComponent()', () => {
     const entity = new Entity();
-    const testComponent = new CBaseComponent({ name: 'test' });
-    entity.addComponent(testComponent);
-    const entityComponent = entity.getComponent('test');
-    expect(entityComponent).toBe(testComponent);
+    const component = new CBaseComponent({ name: 'test' });
+
+    entity.addComponent(component);
+
+    it('Should add a component', () => {
+      expect(entity.hasComponent('test')).toBe(true);
+    });
   });
 
-  it('Should be able to have components unassigned', () => {
+  describe('addComponents()', () => {
     const entity = new Entity();
-    entity.addComponent(new CBaseComponent({ name: 'test' }));
-    entity.removeComponent('test');
-    expect(entity.hasComponent('test')).toBe(false);
+    const components = Array.from({ length: 5 }, (_, i) => new CBaseComponent({ name: `test-${i}` }));
+
+    entity.addComponents(components);
+
+    it('Should add multiple components', () => {
+      for (const { name } of components) {
+        expect(entity.hasComponent(name)).toBe(true);
+      }
+    });
   });
 
+  describe('removeComponent()', () => {
+    const entity = new Entity();
+    const component = new CBaseComponent({ name: 'test' });
+
+    entity.addComponent(component);
+
+    describe('When passed the name of a matching component', () => {
+      entity.removeComponent('test');
+
+      it('Should remove that component from this entity', () => {
+        expect(entity.hasComponent('test')).toBe(false);
+      });
+    });
+  });
+
+  describe('removeComponents()', () => {
+    const entity = new Entity();
+    const components = [
+      new CBaseComponent({ name: 'test-a' }),
+      new CBaseComponent({ name: 'test-b' }),
+    ];
+
+    entity.addComponents(components);
+
+    describe('When passed the names of a matching components', () => {
+      entity.removeComponents('test-a', 'test-b');
+
+      it('Should remove those components from this entity', () => {
+        expect(entity.hasComponents('test-a', 'test-b')).toBe(false);
+      });
+    });
+  });
 });

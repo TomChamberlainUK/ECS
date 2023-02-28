@@ -1,24 +1,35 @@
 import type { CBaseComponent } from './components';
 
 /**
+ * Interface for Entity class.
+ */
+export interface IEntity {
+  components?: CBaseComponent[];
+}
+
+/**
  * A class representing _something_ in the game engine.
  * This could be anything — a rock, an enemy spaceship, a player controller etc.
  * What an entity represents is built through its components. How it behaves is dictated by systems.
  */
 export default class Entity {
-  public id: number;
+  id: number;
   private components: Record<string, CBaseComponent>;
 
   /**
-   * Create an Entity.
+   * Creates an Entity.
    */
-  constructor() {
+  constructor({ components }: IEntity = {}) {
     this.id = generateUniqueId();
     this.components = {};
+
+    if (components) {
+      this.addComponents(components);
+    }
   }
 
   /**
-   * Assigns a specific component and its relevant data to the entity.
+   * Adds a component to this entity.
    * @param component - The component to be added.
    */
   addComponent<T extends CBaseComponent>(component: T) {
@@ -26,7 +37,17 @@ export default class Entity {
   }
 
   /**
-   * Unassigns a specific component and its relevant data from the entity.
+   * Adds multiple components to this entity.
+   * @param component - The components to be added.
+   */
+  addComponents<T extends CBaseComponent>(components: T[]) {
+    for (const component of components) {
+      this.addComponent(component);
+    }
+  }
+
+  /**
+   * Removes a component from this entity.
    * @param name - The indentifying name of the component.
    */
   removeComponent(name: string) {
@@ -34,7 +55,17 @@ export default class Entity {
   }
 
   /**
-   * Checks if a specific component has been assigned to the entity.
+   * Removes multiple components from this entity.
+   * @param name - The indentifying name of the component.
+   */
+  removeComponents(...names: string[]) {
+    for (const name of names) {
+      this.removeComponent(name);
+    }
+  }
+
+  /**
+   * Checks if this entity has a component.
    * @param name - The indentifying name of the component.
    */
   hasComponent(name: string) {
@@ -42,7 +73,7 @@ export default class Entity {
   }
   
   /**
-   * Checks if multiple specific components have been assigned to the entity.
+   * Checks if this entity has multiple components.
    * @param names - The indentifying names of the components.
    */
   hasComponents(...names: string[]) {
@@ -50,7 +81,7 @@ export default class Entity {
   }
 
   /**
-   * Gets a specific component that has been assigned to the entity.
+   * Gets a component from this entity.
    * @param name - The indentifying name of the component.
    */
   getComponent(name: string) {
