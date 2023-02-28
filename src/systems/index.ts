@@ -1,1 +1,1 @@
-export {};
+export { default as renderCircle } from './renderCircle';
