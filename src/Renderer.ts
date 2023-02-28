@@ -1,30 +1,32 @@
-export default class Renderer {
-  private canvas: HTMLCanvasElement | null;
-  private ctx: CanvasRenderingContext2D | null;
+export interface IRenderer {
+  canvas?: HTMLCanvasElement
+}
 
-  constructor() {
-    this.canvas = null;
-    this.ctx = null;
+export default class Renderer {
+  canvas!: HTMLCanvasElement;
+  ctx!: CanvasRenderingContext2D;
+
+  constructor({ canvas }: IRenderer = {}) {
+    if (canvas) {
+      this.setCanvas(canvas);
+    }
   }
 
   setCanvas(canvas: HTMLCanvasElement) {
+    const renderingContext = canvas.getContext('2d');
+    if (renderingContext === null) {
+      throw new Error('Couldn\'t get rendering context from canvas');
+    }
     this.canvas = canvas;
+    this.ctx = renderingContext;
     this.resizeCanvas();
     window.addEventListener('resize', this.resizeCanvas.bind(this));
-    this.ctx = this.canvas.getContext('2d');
   }
 
-  getCanvas() {
-    return this.canvas;
-  }
-
-  getContext() {
-    return this.ctx;
-  }
-
-  private resizeCanvas() {
+  resizeCanvas() {
     if (!this.canvas) return;
-    this.canvas.width = this.canvas.scrollWidth;
-    this.canvas.height = this.canvas.scrollHeight;
+    const devicePixelRatio = window.devicePixelRatio ?? 1;
+    this.canvas.width = this.canvas.scrollWidth * devicePixelRatio;
+    this.canvas.height = this.canvas.scrollHeight * devicePixelRatio;
   }
 }
