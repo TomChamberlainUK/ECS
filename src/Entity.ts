@@ -1,9 +1,12 @@
 import type { CBaseComponent } from './components';
 
 /**
- * Interface for Entity class.
+ * Props type for Entity class.
  */
-export interface IEntity {
+export type EntityProps = {
+  /**
+   * Components to add to the entity.
+   */
   components?: CBaseComponent[];
 }
 
@@ -13,13 +16,17 @@ export interface IEntity {
  * What an entity represents is built through its components. How it behaves is dictated by systems.
  */
 export default class Entity {
-  id: number;
   private components: Record<string, CBaseComponent>;
+  /** 
+   * The id of the entity.
+   */
+  id: number;
 
   /**
    * Creates an Entity.
+   * @param props - The properties passed to the entity.
    */
-  constructor({ components }: IEntity = {}) {
+  constructor({ components }: EntityProps = {}) {
     this.id = generateUniqueId();
     this.components = {};
 
@@ -32,7 +39,7 @@ export default class Entity {
    * Adds a component to this entity.
    * @param component - The component to be added.
    */
-  addComponent<T extends CBaseComponent>(component: T) {
+  addComponent<Component extends CBaseComponent>(component: Component) {
     this.components[component.name] = component;
   }
 
@@ -40,7 +47,7 @@ export default class Entity {
    * Adds multiple components to this entity.
    * @param component - The components to be added.
    */
-  addComponents<T extends CBaseComponent>(components: T[]) {
+  addComponents<Component extends CBaseComponent>(components: Component[]) {
     for (const component of components) {
       this.addComponent(component);
     }

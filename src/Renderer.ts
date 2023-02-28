@@ -1,6 +1,6 @@
 import { IVector2D  } from './maths';
 
-export interface IRenderer {
+export type RendererProps = {
   canvas?: HTMLCanvasElement
 }
 
@@ -8,7 +8,7 @@ export default class Renderer {
   canvas!: HTMLCanvasElement;
   ctx!: CanvasRenderingContext2D;
 
-  constructor({ canvas }: IRenderer = {}) {
+  constructor({ canvas }: RendererProps = {}) {
     if (canvas) {
       this.setCanvas(canvas);
     }

@@ -4,15 +4,15 @@ import Renderer from './Renderer';
 type System = (entities: Entity[], renderer: Renderer) => void;
 
 /**
- * Interface for Scene class.
+ * Props type for Scene class.
  */
-export interface IScene {
+export type SceneProps = {
   /**
-   * The entities of this scene.
+   * The entities of the scene.
    */
   entities?: Entity[],
   /**
-   * Systems to be used in this scene.
+   * Systems to be used in the scene.
    */
   systems?: System[]
 }
@@ -21,7 +21,7 @@ export interface IScene {
  * Class representing a scene in the game.
  * This is a collection of entities and systems that should interact with each other.
  */
-export default class Scene implements IScene {
+export default class Scene {
   public entities: Entity[];
   public systems: System[];
 
@@ -29,7 +29,7 @@ export default class Scene implements IScene {
    * Creates a scene.
    * @param props - Properties passed to the scene.
    */
-  constructor({ entities, systems }: IScene = {}) {
+  constructor({ entities, systems }: SceneProps = {}) {
     this.entities = entities ?? [];
     this.systems = systems ?? [];
   }
