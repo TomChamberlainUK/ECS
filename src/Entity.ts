@@ -3,11 +3,11 @@ import type { CBaseComponent } from './components';
 /**
  * Props type for Entity class.
  */
-export type EntityProps = {
-  /**
-   * Components to add to the entity.
-   */
-  components?: CBaseComponent[];
+export interface IEntity {
+  /** The entities components. */
+  components: Record<string, CBaseComponent>;
+  /** The id of the entity. */
+  id: number;
 }
 
 /**
@@ -15,18 +15,17 @@ export type EntityProps = {
  * This could be anything — a rock, an enemy spaceship, a player controller etc.
  * What an entity represents is built through its components. How it behaves is dictated by systems.
  */
-export default class Entity {
-  private components: Record<string, CBaseComponent>;
-  /** 
-   * The id of the entity.
-   */
+export default class Entity implements IEntity{
+  components: Record<string, CBaseComponent>;
   id: number;
 
   /**
    * Creates an Entity.
    * @param props - The properties passed to the entity.
    */
-  constructor({ components }: EntityProps = {}) {
+  constructor({
+    components
+  }: Partial<Omit<IEntity, 'components' | 'id'> & { components: CBaseComponent[] }> = {}) {
     this.id = generateUniqueId();
     this.components = {};
 

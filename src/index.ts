@@ -1,7 +1,7 @@
 export * as components from './components';
 export * as systems from './systems';
 export * as maths from './maths';
-export { default as Game, GameProps } from '~/Game';
-export { default as Scene, SceneProps } from '~/Scene';
-export { default as Renderer, RendererProps } from '~/Renderer';
-export { default as Entity, EntityProps } from '~/Entity';
+export { default as Game, IGame } from '~/Game';
+export { default as Scene, IScene } from '~/Scene';
+export { default as Renderer, IRenderer } from '~/Renderer';
+export { default as Entity, IEntity } from '~/Entity';

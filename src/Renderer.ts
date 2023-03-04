@@ -1,19 +1,36 @@
-import { IVector2D  } from './maths';
+import { ITransform2D, IRenderCircle } from '~/components';
 
-export type RendererProps = {
-  canvas?: HTMLCanvasElement
+/**
+ * Props type for Renderer class.
+ */
+export interface IRenderer {
+  /** The canvas to render to. */
+  canvas: HTMLCanvasElement;
+  /** The rendering context. */
+  ctx: CanvasRenderingContext2D;
 }
 
-export default class Renderer {
+/**
+ * Class representing a renderer for the game.
+ */
+export default class Renderer implements IRenderer {
   canvas!: HTMLCanvasElement;
   ctx!: CanvasRenderingContext2D;
 
-  constructor({ canvas }: RendererProps = {}) {
+  /**
+   * Creates a renderer.
+   * @param props - Properties passed to the renderer.
+   */
+  constructor({ canvas }: Partial<Omit<IRenderer, 'ctx'>> = {}) {
     if (canvas) {
       this.setCanvas(canvas);
     }
   }
 
+  /**
+   * Sets the canvas.
+   * @param canvas - The canvas to set.
+   */
   setCanvas(canvas: HTMLCanvasElement) {
     const renderingContext = canvas.getContext('2d');
     if (renderingContext === null) {
@@ -25,6 +42,9 @@ export default class Renderer {
     window.addEventListener('resize', this.resizeCanvas.bind(this));
   }
 
+  /**
+   * Resizes canvas rendering to match the DOM.
+   */
   resizeCanvas() {
     if (!this.canvas) return;
     const devicePixelRatio = window.devicePixelRatio ?? 1;
@@ -32,14 +52,11 @@ export default class Renderer {
     this.canvas.height = this.canvas.scrollHeight * devicePixelRatio;
   }
 
-  renderCircle({ position, rotation, scale, radius, fillColor, strokeColor }: {
-    position: IVector2D,
-    rotation: number,
-    scale: IVector2D,
-    radius: number,
-    fillColor: string | false,
-    strokeColor: string | false
-  }) {
+  /**
+   * Renders a circle.
+   * @param props - Where and how to render the circle.
+   */
+  renderCircle({ position, rotation, scale, radius, fillColor, strokeColor }: ITransform2D & IRenderCircle) {
     this.ctx.save();
     this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
 

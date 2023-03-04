@@ -4,14 +4,10 @@ import type Renderer from '~/Renderer';
 /**
  * Props type for Game class.
  */
-export type GameProps = {
-  /**
-   * The currently active scene.
-   */
+export interface IGame {
+  /** The currently active scene. */
   currentScene?: Scene;
-  /**
-   * The renderer for the game.
-   */
+  /** The renderer for the game. */
   renderer?: Renderer;
 }
 
@@ -19,25 +15,16 @@ export type GameProps = {
  * A class representing the game itself.
  * Defines how entities and systems within a scene interact, and how they are rendered.
  */
-export default class Game {
-  /**
-   * The currently active scene.
-   */
-  currentScene: Scene | undefined;
-  /**
-   * The renderer for the game.
-   */
-  renderer: Renderer | undefined;
-  /**
-   * Whether or not the game is running.
-   */
+export default class Game implements IGame {
+  currentScene?: Scene;
+  renderer?: Renderer;
   isRunning: boolean;
 
   /**
    * Creates a game.
    * @param props - Properties passed to the game. 
    */
-  constructor({ currentScene, renderer }: GameProps = {}) {
+  constructor({ currentScene, renderer }: IGame = {}) {
     this.currentScene = currentScene;
     this.renderer = renderer;
     this.isRunning = false;
