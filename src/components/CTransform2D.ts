@@ -5,18 +5,12 @@ import { Vector2D } from '~/maths';
  * Interface for a Transform2D component.
  */
 export interface ITransform2D {
-  /**
-   * Determines an entities position.
-   */
-  position?: Vector2D,
-  /**
-   * Determines an entities rotation.
-   */
-  rotation?: number,
-  /**
-   * Determines an entities scale.
-   */
-  scale?: Vector2D
+  /** Determines an entities position. */
+  position: Vector2D,
+  /** Determines an entities rotation. */
+  rotation: number,
+  /** Determines an entities scale. */
+  scale: Vector2D
 }
 
 /**
@@ -33,13 +27,13 @@ export class CTransform2D extends CBaseComponent implements ITransform2D {
    * @param props - Properties passed to the component.
    */
   constructor({
-    position = { x: 0, y: 0 },
+    position = new Vector2D({ x: 0, y: 0 }),
     rotation = 0,
-    scale = { x: 1, y: 1 }
-  }: ITransform2D = {}) {
+    scale = new Vector2D({ x: 1, y: 1 })
+  }: Partial<ITransform2D> = {}) {
     super({ name: 'transform2d' });
-    this.position = new Vector2D(position);
+    this.position = position;
     this.rotation = rotation;
-    this.scale = new Vector2D(scale);
+    this.scale = scale;
   }
 }

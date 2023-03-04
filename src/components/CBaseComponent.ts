@@ -2,9 +2,7 @@
  * Interface for base component.
  */
 export interface IBaseComponent {
-  /**
-   * The identifying name for the component.
-   */
+  /** The identifying name for the component. */
   name: string;
 }
 

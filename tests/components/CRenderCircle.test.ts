@@ -21,7 +21,7 @@ describe('CRenderCircle', () => {
     });
 
     it('Should have no strokeColor', () => {
-      expect(renderCircleComponent.strokeColor).toBe(false);
+      expect(renderCircleComponent.strokeColor).toBe(undefined);
     });
   });
 
