@@ -1,6 +1,6 @@
-import Game from '~/Game';
-import Renderer from '~/Renderer';
-import Scene from '~/Scene';
+import Game from '~/core/Game';
+import Renderer from '~/core/Renderer';
+import Scene from '~/core/Scene';
 
 describe('Game', () => {
   describe('When instanciated', () => {

@@ -1,5 +1,5 @@
-import Scene from '~/Scene';
-import Entity from '~/Entity';
+import Scene from '~/core/Scene';
+import Entity from '~/core/Entity';
 
 describe('Scene', () => {
   describe('When instanciated', () => {

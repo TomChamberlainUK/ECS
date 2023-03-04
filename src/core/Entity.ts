@@ -1,4 +1,4 @@
-import type { CBaseComponent } from './components';
+import type { CBaseComponent } from '~/components';
 
 /**
  * Props type for Entity class.

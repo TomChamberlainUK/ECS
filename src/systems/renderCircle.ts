@@ -1,5 +1,5 @@
-import Entity from '~/Entity';
-import type Renderer from '~/Renderer';
+import Entity from '~/core/Entity';
+import type Renderer from '~/core/Renderer';
 import type { CRenderCircle, CTransform2D } from '~/components';
 
 /**

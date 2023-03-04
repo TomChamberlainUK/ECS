@@ -1,5 +1,5 @@
-import type Scene from '~/Scene';
-import type Renderer from '~/Renderer';
+import type Scene from '~/core/Scene';
+import type Renderer from '~/core/Renderer';
 
 /**
  * Props type for Game class.

@@ -1,4 +1,4 @@
-import Renderer from '~/Renderer';
+import Renderer from '~/core/Renderer';
 
 describe('Renderer', () => {
   describe('When instanciated', () => {

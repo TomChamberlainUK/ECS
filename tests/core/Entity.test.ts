@@ -1,4 +1,4 @@
-import Entity from '~/Entity';
+import Entity from '~/core/Entity';
 import { CBaseComponent } from '~/components';
 
 describe('Entity', () => {
