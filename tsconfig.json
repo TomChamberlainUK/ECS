@@ -3,10 +3,10 @@
     "module": "ESNext",
     "target": "ES5",
     "moduleResolution": "node",
-    "baseUrl": "./",
-    "outDir": "dist/dts",
+    "baseUrl": ".",
+    "outDir": "./dist/dts/",
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["./src/*"]
     },
     "strict": true,
     "noImplicitAny": true,
