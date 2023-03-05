@@ -1,3 +1,4 @@
+import Entity from '~/core/Entity';
 import Game from '~/core/Game';
 import Renderer from '~/core/Renderer';
 import Scene from '~/core/Scene';
@@ -31,6 +32,19 @@ describe('Game', () => {
       const game = new Game();
       game.start();
       expect(game.isRunning).toBe(true);
+    });
+
+    it('Should call the current scenes systems with entities passed as an argument', () => {
+      const entity = new Entity();
+      const system = jest.fn();
+      const scene = new Scene({
+        entities: [entity],
+        systems: [system]
+      });
+      const renderer = new Renderer();
+      const game = new Game({ currentScene: scene, renderer });
+      game.start();
+      expect(system).toBeCalledWith([entity], renderer);
     });
   });
 
