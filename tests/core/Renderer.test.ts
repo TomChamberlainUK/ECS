@@ -36,6 +36,17 @@ describe('Renderer', () => {
         expect(renderer.ctx).toBeInstanceOf(CanvasRenderingContext2D);
       });
     });
+
+    describe('When passed a canvas that cannot provide a valid rendering context', () => {
+      it('Should throw an exception', () => {
+        const renderer = new Renderer();
+        const canvas = document.createElement('canvas');
+
+        jest.spyOn(canvas, 'getContext').mockReturnValueOnce(null);
+        
+        expect(() => renderer.setCanvas(canvas)).toThrowError('Couldn\'t get rendering context from canvas');
+      });
+    });
   });
 
   describe('resizeCanvas', () => {
