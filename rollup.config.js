@@ -9,9 +9,8 @@ import pkg from './package.json';
 
 const input = './src/index.ts';
 
-/** 
- * @type {import('rollup').RollupOptions}
- */
+// eslint-disable-next-line tsdoc/syntax
+/** @type {import('rollup').RollupOptions} */
 export default [
   // UMD
   {
