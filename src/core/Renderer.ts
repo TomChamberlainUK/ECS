@@ -46,10 +46,9 @@ export default class Renderer implements IRenderer {
    * Resizes canvas rendering to match the DOM.
    */
   resizeCanvas() {
-    if (!this.canvas) return;
-    const devicePixelRatio = window.devicePixelRatio ?? 1;
-    this.canvas.width = this.canvas.scrollWidth * devicePixelRatio;
-    this.canvas.height = this.canvas.scrollHeight * devicePixelRatio;
+    if (!this.canvas) return false;
+    this.canvas.width = this.canvas.scrollWidth * window.devicePixelRatio;
+    this.canvas.height = this.canvas.scrollHeight * window.devicePixelRatio;
   }
 
   /**

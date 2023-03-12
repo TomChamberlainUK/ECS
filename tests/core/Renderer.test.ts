@@ -50,17 +50,31 @@ describe('Renderer', () => {
   });
 
   describe('resizeCanvas', () => {
-    const renderer = new Renderer();
-    const canvas = document.createElement('canvas');
-    renderer.setCanvas(canvas);
-    jest.spyOn(canvas, 'scrollWidth', 'get').mockReturnValueOnce(100);
-    jest.spyOn(canvas, 'scrollHeight', 'get').mockReturnValueOnce(100);
-    
-    describe('When called', () => {
-      it('Should set the canvas width and height to match the DOM', () => {
-        renderer.resizeCanvas();
-        expect(renderer.canvas.width).toBe(100);
-        expect(renderer.canvas.height).toBe(100);
+    describe('When called with a 100 x 100 canvas on a device with a 2:1 DPI', () => {
+      const renderer = new Renderer();
+      const canvas = document.createElement('canvas');
+      renderer.setCanvas(canvas);
+
+      window.devicePixelRatio = 2;
+      jest.spyOn(canvas, 'scrollWidth', 'get').mockReturnValueOnce(100);
+      jest.spyOn(canvas, 'scrollHeight', 'get').mockReturnValueOnce(100);
+
+      renderer.resizeCanvas();
+
+      it('Should set the canvas width and height 200', () => {
+        expect(renderer.canvas.width).toBe(200);
+        expect(renderer.canvas.height).toBe(200);
+      });
+
+      window.devicePixelRatio = 1;
+    });
+
+    describe('When called without a valid canvas', () => {
+      it('Should return false', () => {
+        const renderer = new Renderer();
+        const resized = renderer.resizeCanvas();
+
+        expect(resized).toBe(false);
       });
     });
   });
