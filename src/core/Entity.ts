@@ -90,8 +90,8 @@ export default class Entity implements IEntity{
    * Gets a component from this entity.
    * @param name - The indentifying name of the component.
    */
-  getComponent(name: string) {
-    return this.components[name];
+  getComponent<Component extends CBaseComponent>(name: string): Component {
+    return this.components[name] as Component;
   }
 }
 
