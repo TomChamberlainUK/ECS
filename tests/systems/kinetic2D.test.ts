@@ -15,8 +15,8 @@ describe('kinetic2D()', () => {
       acceleration: { x: 1, y: 1 }
     }));
 
-    const cKinetic2D = entity.getComponent<CKinetic2D>('kinetic2d');
-    const cTransform2D = entity.getComponent<CTransform2D>('transform2d');
+    const cKinetic2D = entity.getComponent<CKinetic2D>('CKinetic2D');
+    const cTransform2D = entity.getComponent<CTransform2D>('CTransform2D');
 
     const canvas = document.createElement('canvas');
     const renderer = new Renderer({ canvas });
@@ -41,7 +41,7 @@ describe('kinetic2D()', () => {
       position: { x: 1, y: 1 }
     }));
 
-    const cTransform2D = entity.getComponent<CTransform2D>('transform2d');
+    const cTransform2D = entity.getComponent<CTransform2D>('CTransform2D');
 
     const canvas = document.createElement('canvas');
     const renderer = new Renderer({ canvas });

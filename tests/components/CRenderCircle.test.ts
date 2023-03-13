@@ -9,7 +9,7 @@ describe('CRenderCircle', () => {
     });
   
     it('Should have an identifiable name', () => {
-      expect(renderCircleComponent.name).toBe('render-circle');
+      expect(renderCircleComponent.name).toBe('CRenderCircle');
     });
 
     it('Should have a radius', () => {

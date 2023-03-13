@@ -31,7 +31,7 @@ export class CTransform2D extends CBaseComponent implements ITransform2D {
     rotation = 0,
     scale = new Vector2D({ x: 1, y: 1 })
   }: Partial<ITransform2D> = {}) {
-    super({ name: 'transform2d' });
+    super({ name: 'CTransform2D' });
     this.position = position;
     this.rotation = rotation;
     this.scale = scale;

@@ -10,7 +10,7 @@ describe('CTransform', () => {
     });
   
     it('Should have an identifiable name', () => {
-      expect(kineticComponent.name).toBe('kinetic2d');
+      expect(kineticComponent.name).toBe('CKinetic2D');
     });
   
     it('Should have a 2D vector velocity of 0, 0', () => {

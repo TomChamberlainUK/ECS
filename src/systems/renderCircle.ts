@@ -10,10 +10,10 @@ import type { CRenderCircle, CTransform2D } from '~/components';
  */
 export default function renderCircle(entities: Entity[], renderer: Renderer) {
   entities.forEach(entity => {
-    if (!entity.hasComponents('render-circle', 'transform2d')) return;
+    if (!entity.hasComponents('CRenderCircle', 'CTransform2D')) return;
 
-    const transform = entity.getComponent('transform2d') as CTransform2D;
-    const renderCircle = entity.getComponent('render-circle') as CRenderCircle;
+    const transform = entity.getComponent<CTransform2D>('CTransform2D');
+    const renderCircle = entity.getComponent<CRenderCircle>('CRenderCircle');
 
     renderer.renderCircle({
       position: transform.position,

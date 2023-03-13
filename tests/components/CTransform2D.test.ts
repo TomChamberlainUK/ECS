@@ -10,7 +10,7 @@ describe('CTransform', () => {
     });
   
     it('Should have an identifiable name', () => {
-      expect(transformComponent.name).toBe('transform2d');
+      expect(transformComponent.name).toBe('CTransform2D');
     });
   
     it('Should have a 2D vector position', () => {

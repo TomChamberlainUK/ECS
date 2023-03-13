@@ -27,7 +27,7 @@ export class CKinetic2D extends CBaseComponent implements IKinetic2D {
     velocity = new Vector2D({ x: 0, y: 0 }),
     acceleration = new Vector2D({ x: 0, y: 0 })
   }: Partial<IKinetic2D> = {}) {
-    super({ name: 'kinetic2d' });
+    super({ name: 'CKinetic2D' });
     this.velocity = velocity;
     this.acceleration = acceleration;
   }

@@ -29,7 +29,7 @@ export class CRenderCircle extends CBaseComponent implements IRenderCircle {
     fillColor = 'white',
     strokeColor
   }: Partial<IRenderCircle> = {}) {
-    super({ name: 'render-circle'});
+    super({ name: 'CRenderCircle'});
     this.radius = radius;
     this.fillColor = fillColor;
     this.strokeColor = strokeColor;

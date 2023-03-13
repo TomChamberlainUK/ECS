@@ -11,10 +11,10 @@ import { Vector2D } from '~/maths';
  */
 export default function kinetic2D(entities: Entity[], renderer: Renderer) {
   entities.forEach(entity => {
-    if (!entity.hasComponents('kinetic2d', 'transform2d')) return;
+    if (!entity.hasComponents('CKinetic2D', 'CTransform2D')) return;
 
-    const transform = entity.getComponent<CTransform2D>('transform2d');
-    const kinetic = entity.getComponent<CKinetic2D>('kinetic2d');
+    const kinetic = entity.getComponent<CKinetic2D>('CKinetic2D');
+    const transform = entity.getComponent<CTransform2D>('CTransform2D');
 
     kinetic.velocity = Vector2D.add(kinetic.velocity, kinetic.acceleration);
     transform.position = Vector2D.add(transform.position, kinetic.velocity);
