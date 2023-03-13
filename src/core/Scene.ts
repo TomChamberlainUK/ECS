@@ -1,7 +1,7 @@
 import Entity from '~/core/Entity';
 import Renderer from '~/core/Renderer';
 
-type System = (entities: Entity[], renderer: Renderer) => void;
+type System = (entities: Entity[], renderer?: Renderer) => void;
 
 /**
  * Props type for Scene class.

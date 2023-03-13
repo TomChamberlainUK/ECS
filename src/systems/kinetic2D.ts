@@ -1,5 +1,4 @@
 import Entity from '~/core/Entity';
-import type Renderer from '~/core/Renderer';
 import { CKinetic2D, CTransform2D } from '~/components';
 import { Vector2D } from '~/maths';
 
@@ -9,7 +8,7 @@ import { Vector2D } from '~/maths';
  * @param entities - An array of entities.
  * @param renderer - The renderer to use.
  */
-export default function kinetic2D(entities: Entity[], renderer: Renderer) {
+export default function kinetic2D(entities: Entity[]) {
   entities.forEach(entity => {
     if (!entity.hasComponents('CKinetic2D', 'CTransform2D')) return;
 

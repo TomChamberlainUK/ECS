@@ -1,5 +1,4 @@
 import Entity from '~/core/Entity';
-import Renderer from '~/core/Renderer';
 import { CKinetic2D, CTransform2D } from '~/components';
 import { kinetic2D } from '~/systems';
 
@@ -18,10 +17,7 @@ describe('kinetic2D()', () => {
     const cKinetic2D = entity.getComponent<CKinetic2D>('CKinetic2D');
     const cTransform2D = entity.getComponent<CTransform2D>('CTransform2D');
 
-    const canvas = document.createElement('canvas');
-    const renderer = new Renderer({ canvas });
-
-    kinetic2D([entity], renderer);
+    kinetic2D([entity]);
 
     it('Should increase the entity\'s velocity by its acceleration', () => {
       expect(cKinetic2D.velocity.x).toBe(2);
@@ -43,10 +39,7 @@ describe('kinetic2D()', () => {
 
     const cTransform2D = entity.getComponent<CTransform2D>('CTransform2D');
 
-    const canvas = document.createElement('canvas');
-    const renderer = new Renderer({ canvas });
-
-    kinetic2D([entity], renderer);
+    kinetic2D([entity]);
 
     it('Should not change position', () => {
       expect(cTransform2D.position.x).toBe(1);
