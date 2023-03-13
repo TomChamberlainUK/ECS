@@ -28,3 +28,16 @@ describe('Vector2D', () => {
     });
   });
 });
+
+describe('Vector2D.add()', () => {
+  describe('When passed two vectors', () => {
+    const vectorA = new Vector2D(1, 1);
+    const vectorB = new Vector2D(1, 1);
+    const vectorAdded = Vector2D.add(vectorA, vectorB);
+
+    it('Should return a new vector with added x and y values', () => {
+      expect(vectorAdded.x).toBe(2);
+      expect(vectorAdded.y).toBe(2);
+    });
+  });
+});

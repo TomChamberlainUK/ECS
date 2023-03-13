@@ -48,4 +48,17 @@ export class Vector2D implements IVector2D {
       this.y = 0;
     }
   }
+
+  /**
+   * Adds two vectors together.
+   * @param a - A vector to add.
+   * @param b - A vector to add.
+   * @returns A new vector that is the sum of the vectors passed.
+   */
+  static add(a: Vector2D, b: Vector2D) {
+    return new Vector2D({
+      x: a.x + b.x,
+      y: a.y + b.y
+    });
+  }
 }
