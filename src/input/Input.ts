@@ -2,7 +2,7 @@
  * Interface for Input.
  */
 export interface IInput {
-  /** Tracks currently pressed keys */
+  /** Tracks currently pressed keys. */
   keys: Record<string, boolean>
 }
 
