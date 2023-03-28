@@ -1,14 +1,16 @@
 import Entity from '~/core/Entity';
-import type Renderer from '~/core/Renderer';
 import type { CRenderCircle, CTransform2D } from '~/components';
+import { SystemParams } from '~/types/system';
 
 /**
  * Renders entities as circles.
  * Entities must have CRenderCircle and CTransform2D components.
  * @param entities - An array of entities.
- * @param renderer - The renderer to use.
+ * @param SystemParams - Extra parameters available to the game's systems.
  */
-export default function renderCircle(entities: Entity[], renderer: Renderer) {
+export default function renderCircle(entities: Entity[], { renderer }: SystemParams) {
+  if (!renderer) return;
+
   entities.forEach(entity => {
     if (!entity.hasComponents('CRenderCircle', 'CTransform2D')) return;
 

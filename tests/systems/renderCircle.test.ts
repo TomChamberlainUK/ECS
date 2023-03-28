@@ -15,7 +15,7 @@ describe('renderCircle()', () => {
     it('Should render', () => {
       jest.spyOn(renderer, 'renderCircle');
 
-      renderCircle([entity], renderer);
+      renderCircle([entity], { renderer });
 
       expect(renderer.renderCircle).toHaveBeenCalled();
     });
@@ -30,7 +30,7 @@ describe('renderCircle()', () => {
     it('Should not render', () => {
       jest.spyOn(renderer, 'renderCircle');
 
-      renderCircle([entity], renderer);
+      renderCircle([entity], { renderer });
 
       expect(renderer.renderCircle).not.toHaveBeenCalled();
     });

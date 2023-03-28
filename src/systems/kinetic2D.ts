@@ -6,7 +6,6 @@ import { Vector2D } from '~/maths';
  * Moves an entities position via kinetic forces.
  * Entities must have CKinetic2D and CTransform2D components.
  * @param entities - An array of entities.
- * @param renderer - The renderer to use.
  */
 export default function kinetic2D(entities: Entity[]) {
   entities.forEach(entity => {
