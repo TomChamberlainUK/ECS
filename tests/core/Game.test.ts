@@ -41,10 +41,9 @@ describe('Game', () => {
         entities: [entity],
         systems: [system]
       });
-      const renderer = new Renderer();
-      const game = new Game({ currentScene: scene, renderer });
+      const game = new Game({ currentScene: scene });
       game.start();
-      expect(system).toBeCalledWith([entity], renderer);
+      expect(system).toBeCalledWith([entity], {});
     });
   });
 

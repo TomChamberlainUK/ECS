@@ -1,5 +1,6 @@
 import type Scene from '~/core/Scene';
 import type Renderer from '~/core/Renderer';
+import type { Input } from '~/input';
 
 /**
  * Props type for Game class.
@@ -9,6 +10,8 @@ export interface IGame {
   currentScene?: Scene;
   /** The renderer for the game. */
   renderer?: Renderer;
+  /** The input for the user to interact with the game. */
+  input?: Input;
 }
 
 /**
@@ -18,15 +21,17 @@ export interface IGame {
 export default class Game implements IGame {
   currentScene?: Scene;
   renderer?: Renderer;
+  input?: Input;
   isRunning: boolean;
 
   /**
    * Creates a game.
-   * @param props - Properties passed to the game. 
+   * @param props - Properties passed to the game.
    */
-  constructor({ currentScene, renderer }: IGame = {}) {
+  constructor({ currentScene, renderer, input }: IGame = {}) {
     this.currentScene = currentScene;
     this.renderer = renderer;
+    this.input = input;
     this.isRunning = false;
   }
 
@@ -46,12 +51,12 @@ export default class Game implements IGame {
   }
 
   private loopStep() {
-    if (!this.isRunning || !this.currentScene || !this.renderer) return;
+    if (!this.isRunning || !this.currentScene) return;
 
-    const { currentScene: { entities, systems }, renderer } = this;
+    const { currentScene: { entities, systems }, renderer, input } = this;
 
     systems.forEach(system => {
-      system(entities, renderer);
+      system(entities, { renderer, input });
     });
 
     requestAnimationFrame(() => this.loopStep());
