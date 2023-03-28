@@ -1,6 +1,7 @@
 import Entity from '~/core/Entity';
 import Game from '~/core/Game';
 import Renderer from '~/core/Renderer';
+import { Input } from '~/input';
 import Scene from '~/core/Scene';
 
 describe('Game', () => {
@@ -19,6 +20,14 @@ describe('Game', () => {
     });
   });
 
+  describe('When instanciated with an input', () => {
+    it('Should set the input', () => {
+      const input = new Input();
+      const game = new Game({ input });
+      expect(game.input).toBeInstanceOf(Input);
+    });
+  });
+
   describe('When instanciated with a scene', () => {
     it('Should set the currentScene', () => {
       const currentScene = new Scene();
@@ -34,16 +43,18 @@ describe('Game', () => {
       expect(game.isRunning).toBe(true);
     });
 
-    it('Should call the current scenes systems with entities passed as an argument', () => {
+    it('Should call the current scenes systems', () => {
       const entity = new Entity();
       const system = jest.fn();
-      const scene = new Scene({
+      const currentScene = new Scene({
         entities: [entity],
         systems: [system]
       });
-      const game = new Game({ currentScene: scene });
+      const renderer = new Renderer();
+      const input = new Input();
+      const game = new Game({ currentScene, renderer, input });
       game.start();
-      expect(system).toBeCalledWith([entity], {});
+      expect(system).toBeCalledWith([entity], { renderer, input });
     });
   });
 
