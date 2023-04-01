@@ -7,7 +7,7 @@ import { Vector2D } from '~/maths';
  * Entities must have CKinetic2D and CTransform2D components.
  * @param entities - An array of entities.
  */
-export default function kinetic2D(entities: Entity[]) {
+export default function sKinetic2D(entities: Entity[]) {
   entities.forEach(entity => {
     if (!entity.hasComponents('CKinetic2D', 'CTransform2D')) return;
 

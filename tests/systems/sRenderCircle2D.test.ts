@@ -1,15 +1,15 @@
 import Entity from '~/core/Entity';
 import Renderer from '~/core/Renderer';
 import { CRenderCircle, CTransform2D } from '~/components';
-import { renderCircle } from '~/systems';
+import { sRenderCircle2D } from '~/systems';
 
-describe('renderCircle()', () => {
+describe('sRenderCircle2D()', () => {
   describe('When passed no renderer', () => {
     const entity = new Entity();
 
     jest.spyOn(entity, 'hasComponents');
 
-    renderCircle([entity], {});
+    sRenderCircle2D([entity], {});
 
     it('Should not iterate over entities', () => {
       expect(entity.hasComponents).not.toHaveBeenCalled();
@@ -27,7 +27,7 @@ describe('renderCircle()', () => {
 
       jest.spyOn(renderer, 'renderCircle');
   
-      renderCircle([entity], { renderer });
+      sRenderCircle2D([entity], { renderer });
 
       it('Should render', () => {
         expect(renderer.renderCircle).toHaveBeenCalled();
@@ -41,7 +41,7 @@ describe('renderCircle()', () => {
 
       jest.spyOn(renderer, 'renderCircle');
 
-      renderCircle([entity], { renderer });
+      sRenderCircle2D([entity], { renderer });
 
       it('Should not render', () => {
         expect(renderer.renderCircle).not.toHaveBeenCalled();

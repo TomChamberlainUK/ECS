@@ -8,7 +8,7 @@ import { SystemParams } from '~/types/system';
  * @param entities - An array of entities.
  * @param SystemParams - Extra parameters available to the game's systems.
  */
-export default function renderCircle(entities: Entity[], { renderer }: SystemParams) {
+export default function sRenderCircle2D(entities: Entity[], { renderer }: SystemParams) {
   if (!renderer) return;
 
   entities.forEach(entity => {
